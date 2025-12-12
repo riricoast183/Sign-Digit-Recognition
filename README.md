@@ -77,7 +77,11 @@ model = Sequential([
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
+---
+
 ## Building the Model
+
+```python
 
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
@@ -96,8 +100,11 @@ model = Sequential([
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
+---
 
-Training the Model
+## Training the Model
+
+```python
 
 history = model.fit(
     train_generator,
@@ -105,7 +112,11 @@ history = model.fit(
     validation_data=test_generator
 )
 
-Results
+---
+
+## Results
+
+```python
 
 After training, the model achieved an accuracy of XX% on the test set. It successfully recognized most digits, with occasional misclassifications between similar hand shapes (e.g., 3 vs. 5).
 
