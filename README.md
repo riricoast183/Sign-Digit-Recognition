@@ -2,7 +2,7 @@
 
 Machine learning is transforming how we interact with technology—from facial recognition to self-driving cars. But could I teach a computer to understand hand gestures representing numbers? That question led me to my latest project: **sign-digit recognition**.  
 
-In this article, I’ll share my journey, the dataset I used, how I built the model, the results I achieved, and the lessons I learned along the way.  
+In this article, I’ll share my journey, the dataset I used, how I built the model, and the lessons I learned along the way.  
 
 ---
 
@@ -32,6 +32,10 @@ dataset/
 └── …
 
 
+
+> **Image placeholder:** Add a few sample images of hand digits here:  
+> ![Sample hand digits](path_to_sample_image)
+
 ---
 
 ## Preprocessing
@@ -59,6 +63,12 @@ test_generator = test_datagen.flow_from_directory(
     class_mode='categorical'
 )
 
+---
+Building the Model
+
+The model I used was a Convolutional Neural Network (CNN) implemented in Python with TensorFlow and Keras. It consisted of multiple convolutional layers with pooling, followed by fully connected layers to classify the digits:
+
+---
 
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
@@ -79,32 +89,11 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 
 ---
 
-## Building the Model
+Training the Model
 
-```python
-
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
-
-model = Sequential([
-    Conv2D(32, (3,3), activation='relu', input_shape=(64,64,3)),
-    MaxPooling2D(2,2),
-    Conv2D(64, (3,3), activation='relu'),
-    MaxPooling2D(2,2),
-    Conv2D(128, (3,3), activation='relu'),
-    MaxPooling2D(2,2),
-    Flatten(),
-    Dense(128, activation='relu'),
-    Dense(10, activation='softmax')
-])
-
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+I trained the model on the training dataset and validated it on the testing dataset over multiple epochs:
 
 ---
-
-## Training the Model
-
-```python
 
 history = model.fit(
     train_generator,
@@ -112,30 +101,22 @@ history = model.fit(
     validation_data=test_generator
 )
 
----
 
-## Results
-
-```python
+Results
 
 After training, the model achieved an accuracy of XX% on the test set. It successfully recognized most digits, with occasional misclassifications between similar hand shapes (e.g., 3 vs. 5).
 
 Example Predictions:
 
 Input Image	Predicted Digit
-
-	3
-
-	7
-
-	1
-
+3	3
+7	7
+1	1
 Lessons Learned and Next Steps
 
 This project taught me the importance of clean, well-labeled data, how CNNs recognize patterns, and that patience and iteration are key in machine learning projects. It also opened doors for future work, such as full sign language recognition or gesture-based interfaces.
 
-For those interested in extending the project, I recommend experimenting with techniques like data augmentation to improve model accuracy, exploring advanced architectures such as ResNet or EfficientNet, and implementing real-time recognition using a webcam for interactive applications.
-
+For those interested in extending the project, I recommend experimenting with data augmentation to improve model accuracy, exploring advanced architectures such as ResNet or EfficientNet, and implementing real-time recognition using a webcam for interactive applications.
 
 Conclusion
 
@@ -143,7 +124,3 @@ Sign-digit recognition may sound simple, but it’s a powerful way to explore co
 
 Author: Richard Paculob
 Project implemented using a Convolutional Neural Network (CNN) in Python with TensorFlow and Keras.
-
-
-
-
